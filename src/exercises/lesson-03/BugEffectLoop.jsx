@@ -15,10 +15,11 @@ export default function BugEffectLoop() {
 
   useEffect(() => {
     setCount(count + 1);
-  });
+  }, []);
 
   return <p>Bug 1 Count: {count}</p>;
 }
 
 // Explanation:
-// (Write your explanation here)
+// This useEffect had no dependency array, so it ran after every render.
+// Each run called setCount, which triggered another render, which ran the effect again. This creates an infinite loop. By adding the empty array, the effect runs once, on mount. So, it updates the count only once.
