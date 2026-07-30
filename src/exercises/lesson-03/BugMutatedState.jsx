@@ -10,11 +10,11 @@
 
 import { useState } from 'react';
 export default function BugMutatedState() {
-  let [count, setCount] = useState(0);
+  // let is not needed because the variable will not change. that was a big clue.
+  const [count, setCount] = useState(0);
 
   function handleAdd() {
-    count++;
-    setCount(count);
+    setCount((prev) => prev + 1);
   }
 
   return (
@@ -26,4 +26,4 @@ export default function BugMutatedState() {
 }
 
 // Explanation:
-// (Write your explanation here)
+// the handleAdd function mutated the count variable in place React does not reliably track changes to mutable state variables. The fix uses setCount with a functional update to ensure that the state is updated correctly based on the previous state value. This prevents issues with stale state and ensures that the component re-renders correctly when the count changes.
