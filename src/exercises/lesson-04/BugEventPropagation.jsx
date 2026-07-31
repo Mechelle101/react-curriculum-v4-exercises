@@ -6,7 +6,8 @@ export default function BugEventPropagation() {
     alert("RED BOX CLICKED ❌ Don't show me!");
   }
 
-  function handleInnerClick() {
+  function handleInnerClick(e) {
+    e.stopPropagation(); // Stop the event from bubbling up
     alert('Button Clicked ✅');
   }
 
@@ -22,3 +23,5 @@ export default function BugEventPropagation() {
     </>
   );
 }
+
+// Here is the explaination. When you first clicked the inner button it triggerted both alerts because of event bubbling. The event started on the element it happend opn and traveled upword. This trigered any event it passed. So the button's onClick ran, and then triggered the parent's onClick too. I added the event parameter, e, to handleInnerClick, this got passed to every handler automatically. I called e.stopPropagation() to stop the event from bubbling up to the parent. This way only the inner button's action triggers an alert when the button is pushed.
