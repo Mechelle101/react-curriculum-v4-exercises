@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 import {
   useRenderCounter,
   RenderCounter,
@@ -88,8 +90,8 @@ function BookStats({ books }) {
       _dummy: dummy, // Prevent optimization from removing our timing code
     };
   };
-
-  const stats = calculateStats();
+  // wrap the function in useMemo instead of the function call?
+  const stats = useMemo(() => calculateStats(), [books]);
 
   return (
     <div className={styles.statsContainer}>
