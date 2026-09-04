@@ -41,6 +41,12 @@ export default function Home({ products }) {
             <p style={{ margin: 0 }}>
               <strong>${p.price.toFixed(2)}</strong>
             </p>
+            <Link
+              to={`../products/${p.id}`}
+              style={{ display: 'inline-block, marginTop: 8 ' }}
+            >
+              View Details
+            </Link>
           </article>
         ))}
       </div>
